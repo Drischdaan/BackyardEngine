@@ -1,0 +1,58 @@
+**/bin/
+**/obj/
+bin-int/
+build/
+*.log
+.idea/
+
+imgui.ini
+
+# Visual Studio files and folder
+.vs/
+*.sln
+*.vcxproj
+**/*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+
+**/__pycache__/
+
+**/Makefile
+
+### C++ ###
+# Prerequisites
+*.d
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Not ignore
+!Tools/BuildTool/bin
+!Tools/BuildTool/bin/**/*.exe
