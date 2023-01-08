@@ -1,6 +1,8 @@
 ﻿#include "pch.h"
 
-int main()
+#include <Backyard.h>
+
+int32 main()
 {
     return 0;
 }
