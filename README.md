@@ -30,6 +30,10 @@ The roadmap is not finished as of yet. I am planning to release a trello board.
 
 > **ℹ️ Info:** I made the decision to not implement OpenGL for now. Also, because of a lack of hardware, I am not adding macOS support in the near future
 
+## 🪛 Structure
+
+<img src="https://i.imgur.com/pUdK0I1.jpg">
+
 ## 🚀 Development
 
 ### Requirements
@@ -54,7 +58,6 @@ $ .\Tools\Scripts\GenerateProjectFiles.bat
 ```
 
 > **❗Note:** Execute the command in the root of the repository
-
 
 ## 📜 License
 
