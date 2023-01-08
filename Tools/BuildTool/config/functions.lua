@@ -3,7 +3,6 @@ function resetFilter()
 end
 
 function project_defaults()
-  resetFilter()
   location (defaultProjectLocation)
 
   language 'c++'
@@ -59,7 +58,6 @@ function project_defaults()
 end
 
 function use_precompiled_header()
-  resetFilter()
   local pchSourceLocation = '%{prj.location}/Source'
   pchheader 'pch.h'
   pchsource (pchSourceLocation .. '/pch.cpp')
@@ -71,7 +69,6 @@ function use_precompiled_header()
 end
 
 function configure_static_library()
-  resetFilter()
   kind 'StaticLib'
 
   defines {
@@ -81,7 +78,6 @@ function configure_static_library()
 end
 
 function configure_dynamic_library()
-  resetFilter()
   kind 'SharedLib'
 
   defines {
@@ -91,7 +87,6 @@ function configure_dynamic_library()
 end
 
 function configure_executable_console()
-  resetFilter()
   kind 'ConsoleApp'
 
   defines {
@@ -100,7 +95,6 @@ function configure_executable_console()
 end
 
 function configure_executable_windowed()
-  resetFilter()
   kind 'WindowedApp'
 
   defines {
