@@ -7,6 +7,8 @@
   <h3 align="center">Backyard Engine</h3>
   <p align="center">
     An educational game engine for me to learn graphics programming
+    <br/>
+    <a href="https://trello.com/b/Ro0Y7eFF/backyard-engine"><strong>Explore the roadmap »</strong></a>
     <br />
   </p>
 </div>
@@ -20,7 +22,7 @@
 
 ## 🛠️ Roadmap *(WIP)*
 
-The roadmap is not finished as of yet. I am planning to release a trello board.
+You can find a detailed roadmap and the progress on the the [trello board][trello-board].
 
 **Supported rendering apis:**
 
@@ -80,6 +82,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [issues-url]: https://github.com/Drischdaan/BackyardEngine/issues
 [license-shield]: https://img.shields.io/github/license/Drischdaan/BackyardEngine.svg?style=for-the-badge
 [license-url]: https://github.com/Drischdaan/BackyardEngine/blob/master/LICENSE.txt
+[trello-board]: https://trello.com/b/Ro0Y7eFF/backyard-engine
 
 <!-- Socials -->
 [Github]: https://skillicons.dev/icons?i=github
