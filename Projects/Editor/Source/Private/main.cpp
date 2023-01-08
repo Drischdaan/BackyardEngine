@@ -2,7 +2,4 @@
 
 #include <Backyard.h>
 
-int32 main()
-{
-    return 0;
-}
+BACKYARD_ENGINE_ENTRY_POINT()
