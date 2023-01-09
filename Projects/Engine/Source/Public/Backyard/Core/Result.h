@@ -17,10 +17,18 @@ enum EResult
 
 namespace Result
 {
+#ifdef _BACKYARD_CONFIGURATION_DEBUG
     const char* ToString(EResult result);
+#endif
     bool IsSuccess(EResult result);
     bool IsFailure(EResult result);
 }
 
 #define IS_SUCCESS(result) (Result::IsSuccess(result))
 #define IS_FAILURE(result) (Result::IsFailure(result))
+
+#ifdef _BACKYARD_CONFIGURATION_DEBUG
+    #define RESULT_TO_STRING(result) (Result::ToString(result))
+#else
+    #define RESULT_TO_STRING(result) ("")
+#endif

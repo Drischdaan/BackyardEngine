@@ -2,6 +2,8 @@
 
 #include <Backyard/Core/Result.h>
 
+#ifdef _BACKYARD_CONFIGURATION_DEBUG
+
 #define DEFINE_RESULT_STRING(result, string) case result: return string
 
 const char* Result::ToString(EResult result)
@@ -23,6 +25,8 @@ const char* Result::ToString(EResult result)
             return "Unknown Result";
     }
 }
+
+#endif
 
 bool Result::IsSuccess(EResult result)
 {
