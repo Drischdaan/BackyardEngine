@@ -6,7 +6,7 @@ function project_defaults()
   location (defaultProjectLocation)
 
   language 'c++'
-  cppdialect 'c++20'
+  cppdialect 'C++Latest'
 
   targetdir (buildDirectory)
   objdir (objectBuildDirectory)
