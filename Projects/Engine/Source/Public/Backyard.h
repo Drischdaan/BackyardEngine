@@ -6,4 +6,6 @@
 #include <Backyard/Core/Logging.h>
 #include <Backyard/Core/Assertion.h>
 
+#include <Backyard/Core/Application.h>
+
 #include <Backyard/Platform/EntryPoint.h>
