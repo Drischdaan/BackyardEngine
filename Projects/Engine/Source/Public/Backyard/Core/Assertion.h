@@ -12,4 +12,9 @@ namespace Assertion
 }
 
 #define ASSERT(condition, message) Assertion::Assert(condition, message, __FILENAME__, __LINE__)
-#define ASSERT_DETAILED(condition, message) Assertion::AssertDetailed(condition, message, __FILENAME__, __LINE__, __FUNCTION__, #condition)
+
+#ifdef _BACKYARD_CONFIGURATION_DEBUG
+    #define ASSERT_DETAILED(condition, message) Assertion::AssertDetailed(condition, message, __FILENAME__, __LINE__, __FUNCTION__, #condition)
+#else
+    #define ASSERT_DETAILED(condition, message)
+#endif
