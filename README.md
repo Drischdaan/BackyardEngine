@@ -20,6 +20,15 @@
 
 </div>
 
+## 🪵 Branches
+
+| Branch      | Description                                                   |
+|-------------|---------------------------------------------------------------|
+| `main`      | Contains the latest stable version.                           |
+| `develop`   | Contains the latest development version. Most likely unstable |
+| `feature/*` | Contains a feature that is currently being developed.         |
+| `fix/*`     | Contains a fix that is currently being developed.             |
+
 ## 🛠️ Roadmap *(WIP)*
 
 You can find a detailed roadmap and the progress on the the [trello board][trello-board].
