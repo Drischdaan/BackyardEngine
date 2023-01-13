@@ -47,5 +47,5 @@ namespace Result
 #ifdef _BACKYARD_CONFIGURATION_DEBUG
     #define RESULT_TO_STRING(result) (Result::ToString(result))
 #else
-    #define RESULT_TO_STRING(result) ("")
+    #define RESULT_TO_STRING(result) ("Don't use this in release builds!")
 #endif
