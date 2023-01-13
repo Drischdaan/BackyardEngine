@@ -18,9 +18,26 @@ enum EResult
 namespace Result
 {
 #ifdef _BACKYARD_CONFIGURATION_DEBUG
+    /**
+     * @brief Converts the given result code to a string.
+     * @param result The result code to convert
+     * @return Result code as a string
+     */
     const char* ToString(EResult result);
 #endif
+    
+    /**
+     * @brief Checks if the given result code is a success code.
+     * @param result The result code to check
+     * @return True if the result code is a success code, false otherwise
+     */
     bool IsSuccess(EResult result);
+
+    /**
+     * @brief Checks if the given result code is a failure code.
+     * @param result The result code to check
+     * @return True if the result code is a failure code, false otherwise
+     */
     bool IsFailure(EResult result);
 }
 

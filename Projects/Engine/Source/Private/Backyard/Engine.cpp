@@ -3,15 +3,17 @@
 #include <Backyard/Engine.h>
 
 FEngine::FEngine(std::shared_ptr<FApplication> application)
-    : m_Application(std::move(application))
+    : m_bIsInitialized(false), m_Application(std::move(application))
 {
 }
 
 EResult FEngine::Initialize()
 {
+    ASSERT_RETURN(!m_bIsInitialized, RESULT_FAILURE, "Engine already initialized!")
+    m_bIsInitialized = true;
+    
     const EResult applicationInitResult = m_Application->Initialize();
-    if(IS_FAILURE(applicationInitResult))
-        return applicationInitResult;
+    ASSERT_RETURN(IS_SUCCESS(applicationInitResult), applicationInitResult, "Application initialization failed!")
     return RESULT_OK;
 }
 
@@ -28,7 +30,6 @@ EResult FEngine::Shutdown(EResult result)
 EResult EngineMain(std::shared_ptr<FApplication> application)
 {
     GEngine = std::make_shared<FEngine>(std::move(application));
-
     EResult result = GEngine->Initialize();
     if(IS_FAILURE(result))
         return GEngine->Shutdown(result);
