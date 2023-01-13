@@ -17,14 +17,14 @@ private:
     /**
      * @brief Starts the update and render loop.
      */
-    void Run();
+    void Run() const;
 
     /**
      * @brief Shuts down all core components of the engine.
      * @return Returns a result code indicating whether the shutdown was successful.
      * @param result A optional result code indicating the reason for the shutdown.
      */
-    EResult Shutdown(EResult result = RESULT_OK);
+    EResult Shutdown(EResult result = RESULT_OK) const;
 
 private:
     /** Determines if the engine is initialized */

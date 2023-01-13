@@ -12,6 +12,7 @@ public:
 
     EResult Initialize() override
     {
+        LOG_DEBUG("Initialized editor application");
         return RESULT_OK;
     }
     
