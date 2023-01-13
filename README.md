@@ -22,12 +22,12 @@
 
 ## 🪵 Branches
 
-| Branch      | Description                                                   |
-|-------------|---------------------------------------------------------------|
-| `main`      | Contains the latest stable version.                           |
-| `develop`   | Contains the latest development version. Most likely unstable |
-| `feature/*` | Contains a feature that is currently being developed.         |
-| `fix/*`     | Contains a fix that is currently being developed.             |
+| Branch                               | Description                                                   |
+|--------------------------------------|---------------------------------------------------------------|
+| `main`                               | Contains the latest stable version.                           |
+| `develop`<sup>(default branch)</sup> | Contains the latest development version. Most likely unstable |
+| `feature/*`                          | Contains a feature that is currently being developed.         |
+| `fix/*`                              | Contains a fix that is currently being developed.             |
 
 ## 🛠️ Roadmap *(WIP)*
 
