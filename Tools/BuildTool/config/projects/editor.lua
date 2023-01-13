@@ -4,11 +4,13 @@ project 'Editor'
   use_precompiled_header()
 
   links {
-    'Engine'
+    'Engine',
+    'spdlog',
   }
 
   includedirs {
     '%{wks.location}/Projects/Engine/Source/Public',
+    '%{wks.location}/Projects/ThirdParty/spdlog/include',
   }
 
   -- Configure kind

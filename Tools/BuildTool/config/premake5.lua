@@ -8,3 +8,6 @@ include 'workspace.lua'
 group ''
   include 'projects/engine.lua'
   include 'projects/editor.lua'
+
+group 'Dependencies'
+  include 'projects/spdlog.lua'
