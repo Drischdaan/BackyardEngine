@@ -5,3 +5,7 @@ project 'Engine'
 
   -- Configure kind
   configure_static_library()
+
+  includedirs {
+    '%{wks.location}/Projects/ThirdParty/spdlog/include',
+  }
