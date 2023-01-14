@@ -11,3 +11,4 @@ group ''
 
 group 'Dependencies'
   include 'projects/spdlog.lua'
+  include 'projects/glfw.lua'

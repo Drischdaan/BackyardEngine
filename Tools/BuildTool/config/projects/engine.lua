@@ -12,8 +12,10 @@ project 'Engine'
 
   includedirs {
     '%{wks.location}/Projects/ThirdParty/spdlog/include',
+    '%{wks.location}/Projects/ThirdParty/glfw/include',
   }
 
   links {
     'spdlog',
+    'glfw',
   }
