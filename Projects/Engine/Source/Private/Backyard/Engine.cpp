@@ -20,16 +20,33 @@ EResult FEngine::Initialize()
     const EResult applicationInitResult = m_Application->Initialize();
     ASSERT_RETURN(IS_SUCCESS(applicationInitResult), applicationInitResult, "Application initialization failed!")
 
+    m_WindowManager = std::make_shared<FWindowManager>();
+    m_WindowManager->Initialize();
+
+    FWindowState windowState{};
+    windowState.Title = "Backyard Engine";
+    windowState.Width = 1280;
+    windowState.Height = 720;
+    windowState.IsFullscreen = false;
+    FWindow* primaryWindow = m_WindowManager->Create(windowState);
+    m_WindowManager->SetPrimaryWindow(primaryWindow);
+
     LOG_INFO("Engine initialized successfully!");
     return RESULT_OK;
 }
 
 void FEngine::Run() const
 {
+    ASSERT_RETURN(m_WindowManager->GetPrimaryWindow(), , "No primary window set!")
+    while(!m_WindowManager->GetPrimaryWindow()->IsCloseRequested())
+    {
+        m_WindowManager->HandleInput();
+    }
 }
 
 EResult FEngine::Shutdown(EResult result) const
 {
+    m_WindowManager->Shutdown();
     m_Application->Shutdown();
     return result;
 }

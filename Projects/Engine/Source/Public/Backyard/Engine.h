@@ -2,6 +2,8 @@
 
 #include <Backyard/Core/Application.h>
 
+#include "Core/WindowManager.h"
+
 class FEngine
 {
 public:
@@ -24,7 +26,7 @@ private:
      * @return Returns a result code indicating whether the shutdown was successful.
      * @param result A optional result code indicating the reason for the shutdown.
      */
-    EResult Shutdown(EResult result = RESULT_OK) const;
+    [[nodiscard]] EResult Shutdown(EResult result = RESULT_OK) const;
 
 private:
     /** Determines if the engine is initialized */
@@ -32,6 +34,8 @@ private:
 
     /** The application that is running on the engine */
     std::shared_ptr<FApplication> m_Application;
+
+    std::shared_ptr<FWindowManager> m_WindowManager;
 
     // Friend classes and functions
     friend EResult EngineMain(std::shared_ptr<FApplication> application);
