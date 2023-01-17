@@ -2,10 +2,14 @@
 
 #include <Backyard/Core/Application.h>
 
+#include "Core/WindowManager.h"
+
 class FEngine
 {
 public:
     FEngine(std::shared_ptr<FApplication> application);
+
+    void RequestClose();
 
 private:
     /**
@@ -17,21 +21,26 @@ private:
     /**
      * @brief Starts the update and render loop.
      */
-    void Run() const;
+    void Run();
 
     /**
      * @brief Shuts down all core components of the engine.
      * @return Returns a result code indicating whether the shutdown was successful.
      * @param result A optional result code indicating the reason for the shutdown.
      */
-    EResult Shutdown(EResult result = RESULT_OK) const;
+    [[nodiscard]] EResult Shutdown(EResult result = RESULT_OK) const;
 
 private:
     /** Determines if the engine is initialized */
     bool m_bIsInitialized;
 
+    /** Determines if a shutdown is requested */
+    bool m_bIsCloseRequested;
+
     /** The application that is running on the engine */
     std::shared_ptr<FApplication> m_Application;
+
+    std::shared_ptr<FWindowManager> m_WindowManager;
 
     // Friend classes and functions
     friend EResult EngineMain(std::shared_ptr<FApplication> application);

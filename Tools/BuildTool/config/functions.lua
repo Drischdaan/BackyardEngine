@@ -8,6 +8,8 @@ function project_defaults()
   language 'c++'
   cppdialect 'C++Latest'
 
+  staticruntime 'on'
+
   targetdir (buildDirectory)
   objdir (objectBuildDirectory)
 

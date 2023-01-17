@@ -8,8 +8,14 @@
 #endif
 
 FEngine::FEngine(std::shared_ptr<FApplication> application)
-    : m_bIsInitialized(false), m_Application(std::move(application))
+    : m_bIsInitialized(false), m_bIsCloseRequested(false), m_Application(std::move(application))
 {
+}
+
+void FEngine::RequestClose()
+{
+    LOG_INFO("Close was requested");
+    m_bIsCloseRequested = true;
 }
 
 EResult FEngine::Initialize()
@@ -20,16 +26,35 @@ EResult FEngine::Initialize()
     const EResult applicationInitResult = m_Application->Initialize();
     ASSERT_RETURN(IS_SUCCESS(applicationInitResult), applicationInitResult, "Application initialization failed!")
 
+    m_WindowManager = std::make_shared<FWindowManager>();
+    m_WindowManager->Initialize();
+
+    FWindowState windowState{};
+    windowState.Title = "Backyard Engine";
+    windowState.Width = 1280;
+    windowState.Height = 720;
+    windowState.IsFullscreen = false;
+    FWindow* primaryWindow = m_WindowManager->Create(windowState);
+    m_WindowManager->SetPrimaryWindow(primaryWindow);
+
     LOG_INFO("Engine initialized successfully!");
     return RESULT_OK;
 }
 
-void FEngine::Run() const
+void FEngine::Run()
 {
+    ASSERT_RETURN(m_WindowManager->GetPrimaryWindow(), , "No primary window set!")
+    while(!m_bIsCloseRequested)
+    {
+        m_WindowManager->HandleInput();
+        if(m_WindowManager->GetPrimaryWindow()->IsCloseRequested())
+            RequestClose();
+    }
 }
 
 EResult FEngine::Shutdown(EResult result) const
 {
+    m_WindowManager->Shutdown();
     m_Application->Shutdown();
     return result;
 }

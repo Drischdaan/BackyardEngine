@@ -11,6 +11,7 @@ project 'Editor'
   includedirs {
     '%{wks.location}/Projects/Engine/Source/Public',
     '%{wks.location}/Projects/ThirdParty/spdlog/include',
+    '%{wks.location}/Projects/ThirdParty/glfw/include',
   }
 
   -- Configure kind
