@@ -9,6 +9,8 @@ class FEngine
 public:
     FEngine(std::shared_ptr<FApplication> application);
 
+    void RequestClose();
+
 private:
     /**
      * @brief Initializes all core components of the engine.
@@ -19,7 +21,7 @@ private:
     /**
      * @brief Starts the update and render loop.
      */
-    void Run() const;
+    void Run();
 
     /**
      * @brief Shuts down all core components of the engine.
@@ -31,6 +33,9 @@ private:
 private:
     /** Determines if the engine is initialized */
     bool m_bIsInitialized;
+
+    /** Determines if a shutdown is requested */
+    bool m_bIsCloseRequested;
 
     /** The application that is running on the engine */
     std::shared_ptr<FApplication> m_Application;

@@ -15,7 +15,7 @@ struct FWindowState
 class FWindow
 {
 public:
-    FWindow(const FWindowState& state);
+    FWindow(const FWindowState& state, GLFWmonitor* monitor, const GLFWvidmode* videoMode);
     ~FWindow();
 
     void SetTitle(const char* title);
@@ -28,6 +28,8 @@ public:
 
 private:
     FWindowState m_State;
+    GLFWmonitor* m_Monitor;
+    const GLFWvidmode* m_VideoMode;
 
     GLFWwindow* m_WindowHandle;
     

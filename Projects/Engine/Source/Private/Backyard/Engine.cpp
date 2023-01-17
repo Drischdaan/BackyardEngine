@@ -8,8 +8,14 @@
 #endif
 
 FEngine::FEngine(std::shared_ptr<FApplication> application)
-    : m_bIsInitialized(false), m_Application(std::move(application))
+    : m_bIsInitialized(false), m_bIsCloseRequested(false), m_Application(std::move(application))
 {
+}
+
+void FEngine::RequestClose()
+{
+    LOG_INFO("Close was requested");
+    m_bIsCloseRequested = true;
 }
 
 EResult FEngine::Initialize()
@@ -35,12 +41,14 @@ EResult FEngine::Initialize()
     return RESULT_OK;
 }
 
-void FEngine::Run() const
+void FEngine::Run()
 {
     ASSERT_RETURN(m_WindowManager->GetPrimaryWindow(), , "No primary window set!")
-    while(!m_WindowManager->GetPrimaryWindow()->IsCloseRequested())
+    while(!m_bIsCloseRequested)
     {
         m_WindowManager->HandleInput();
+        if(m_WindowManager->GetPrimaryWindow()->IsCloseRequested())
+            RequestClose();
     }
 }
 

@@ -14,7 +14,7 @@ EResult FWindowManager::Initialize()
     glfwInit();
     m_PrimaryMonitor = glfwGetPrimaryMonitor();
     m_PrimaryMonitorVideoMode = glfwGetVideoMode(m_PrimaryMonitor);
-    LOG_DEBUG("Monitor:");
+    LOG_DEBUG("Monitor Specification:");
     LOG_DEBUG(" - Name: {}", glfwGetMonitorName(m_PrimaryMonitor));
     LOG_DEBUG(" - Width: {}px", m_PrimaryMonitorVideoMode->width);
     LOG_DEBUG(" - Height: {}px", m_PrimaryMonitorVideoMode->height);
@@ -33,7 +33,7 @@ void FWindowManager::Shutdown()
 
 FWindow* FWindowManager::Create(const FWindowState& state)
 {
-    FWindow* window = new FWindow(state);
+    FWindow* window = new FWindow(state, m_PrimaryMonitor, m_PrimaryMonitorVideoMode);
     m_Windows.push_back(window);
     return window;
 }

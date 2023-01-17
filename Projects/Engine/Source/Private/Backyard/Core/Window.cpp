@@ -2,8 +2,8 @@
 
 #include <Backyard/Core/Window.h>
 
-FWindow::FWindow(const FWindowState& state)
-    : m_State(state), m_WindowHandle(nullptr)
+FWindow::FWindow(const FWindowState& state, GLFWmonitor* monitor, const GLFWvidmode* videoMode)
+    : m_State(state), m_Monitor(monitor), m_VideoMode(videoMode), m_WindowHandle(nullptr)
 {
     m_WindowHandle = glfwCreateWindow(state.Width, state.Height, state.Title, nullptr, nullptr);
     glfwSetWindowUserPointer(m_WindowHandle, this);
@@ -13,8 +13,7 @@ FWindow::FWindow(const FWindowState& state)
         windowInstance->m_State.Width = width;
         windowInstance->m_State.Height = height;
     });
-    if(m_State.IsFullscreen)
-        SetFullscreen(m_State.IsFullscreen);
+    SetFullscreen(m_State.IsFullscreen);
 }
 
 FWindow::~FWindow()
@@ -32,14 +31,14 @@ void FWindow::SetFullscreen(bool8 value)
 {
     m_State.IsFullscreen = value;
     if(m_State.IsFullscreen)
-    {
-        GLFWmonitor* monitor = glfwGetPrimaryMonitor();
-        const GLFWvidmode* videoMode = glfwGetVideoMode(monitor);
-        glfwSetWindowMonitor(m_WindowHandle, monitor, 0, 0, videoMode->width, videoMode->height, videoMode->refreshRate);
+    { 
+        glfwSetWindowMonitor(m_WindowHandle, m_Monitor, 0, 0, m_VideoMode->width, m_VideoMode->height, m_VideoMode->refreshRate);
     }
     else
     {
-        glfwSetWindowMonitor(m_WindowHandle, nullptr, 0, 0, m_State.Width, m_State.Height, 0);
+        const uint32 posX = (m_VideoMode->width - m_State.Width) / 2;
+        const uint32 posY = (m_VideoMode->height - m_State.Height) / 2;
+        glfwSetWindowMonitor(m_WindowHandle, nullptr, posX, posY, m_State.Width, m_State.Height, m_VideoMode->refreshRate);
     }
 }
 
