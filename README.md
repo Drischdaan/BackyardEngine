@@ -61,7 +61,7 @@ In order to setup a working development environment you first have to clone the 
 $ git clone --recursive https://github.com/Drischdaan/BackyardEngine
 ```
 
-After you cloned the repository you have to generate the project files with the correct script for your right operating system.
+After you cloned the repository you have to generate the project files with the correct script for your operating system.
 
 ```shell
 # Windows
