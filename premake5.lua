@@ -9,7 +9,6 @@ workspace 'BackyardEngine'
 
   platforms {
     'Windows',
-    'Linux',
   }
 
   filter { 'platforms:Windows' }
