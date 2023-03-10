@@ -53,6 +53,10 @@ imgui.ini
 *.out
 *.app
 
-# Not ignore
-!Tools/BuildTool/bin
-!Tools/BuildTool/bin/**/*.exe
+# Conan
+conan.lock
+conanbuildinfo.*
+conaninfo.txt
+graph_info.json
+
+!**/premake5.exe
