@@ -1,8 +1,9 @@
 [requires]
-xxhash/0.8.1
 
 [options]
-xxhash:shared=True
+
+[imports]
+bin, *.dll -> ./../../../App
 
 [generators]
 premake
