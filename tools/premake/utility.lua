@@ -86,11 +86,6 @@ function use_precompiled_header()
   local pchSourceLocation = '%{prj.location}/'
   pchheader 'pch.h'
   pchsource (pchSourceLocation .. '/pch.cpp')
-
-  files {
-    pchSourceLocation .. '/pch.cpp',
-    pchSourceLocation .. '/pch.h',
-  }
 end
 
 function configure_static_library()
