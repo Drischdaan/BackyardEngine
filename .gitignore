@@ -55,7 +55,6 @@ imgui.ini
 
 # Conan
 conan.lock
-conanbuildinfo.txt
+conanbuildinfo.*
 conaninfo.txt
 graph_info.json
-conanbuildinfo.premake.lua
