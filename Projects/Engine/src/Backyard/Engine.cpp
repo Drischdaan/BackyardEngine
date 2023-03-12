@@ -37,9 +37,9 @@ uint32 FEngine::Shutdown(uint32 exitCode) const
 
 uint32 EngineMain(FApplicationInfo applicationInfo)
 {
-    const FEngine* engine = FDefaultAllocator::GetInstance()->NewObject<FEngine>(applicationInfo);
+    const FEngine* engine = FDefaultAllocator::GetInstance()->NewObject<FEngine>(MEMORY_TAG_CORE, applicationInfo);
     const uint32 exitCode = engine->Run();
-    FDefaultAllocator::GetInstance()->DeleteObject(engine);
+    FDefaultAllocator::GetInstance()->DeleteObject(engine, MEMORY_TAG_CORE);
     delete FDefaultAllocator::GetInstance();
     return exitCode;
 }

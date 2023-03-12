@@ -37,40 +37,40 @@ public:
     }
 
     template<typename T, typename = std::enable_if_t<std::is_default_constructible_v<T>>>
-    T* NewObject()
+    T* NewObject(EMemoryTag tag = MEMORY_TAG_UNKNOWN)
     {
-        T* pointer = AllocateMemory<T>();
+        T* pointer = AllocateMemory<T>(tag);
         if(pointer)
             new (pointer) T();
         return pointer;
     }
 
     template<typename T, typename Arg, typename = std::enable_if_t<std::is_constructible_v<T, Arg>>>
-    T* NewObject(Arg arg)
+    T* NewObject(EMemoryTag tag, Arg arg)
     {
-        T* pointer = AllocateMemory<T>();
+        T* pointer = AllocateMemory<T>(tag);
         if(pointer)
             new (pointer) T(arg);
         return pointer;
     }
 
     template<typename T, typename... Args, typename = std::enable_if_t<std::is_constructible_v<T, Args>>>
-    T* NewObject(Args... args)
+    T* NewObject(EMemoryTag tag, Args... args)
     {
-        T* pointer = AllocateMemory<T>();
+        T* pointer = AllocateMemory<T>(tag);
         if(pointer)
             new (pointer) T(args...);
         return pointer;
     }
 
     template<typename T>
-    void DeleteObject(T* object)
+    void DeleteObject(T* object, EMemoryTag tag = MEMORY_TAG_UNKNOWN)
     {
         if(object)
         {
             object->~T();
             // ReSharper disable once CppCStyleCast
-            FreeMemory((void*)object, sizeof(T));
+            FreeMemory((void*)object, sizeof(T), tag);
         }
     }
 
