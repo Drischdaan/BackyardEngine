@@ -66,7 +66,7 @@ function project_defaults()
 end
 
 function use_precompiled_header()
-  local pchSourceLocation = '%{prj.location}/'
+  local pchSourceLocation = '%{prj.location}/src'
   pchheader 'pch.h'
   pchsource (pchSourceLocation .. '/pch.cpp')
 end
