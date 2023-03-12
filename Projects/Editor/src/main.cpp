@@ -1,6 +1,5 @@
 ﻿#include "pch.h"
 
-int main()
-{
-    return 0;   
-}
+#include <Backyard/Platform/EntryPoint.h>
+
+ENGINE_ENTRY_POINT({ "Editor" })
