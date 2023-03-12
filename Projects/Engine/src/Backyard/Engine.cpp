@@ -21,12 +21,6 @@ uint32 FEngine::Run() const
     return Shutdown();
 }
 
-class FTest
-{
-public:
-    const char* Name;
-};
-
 uint32 FEngine::Initialize() const
 {
     return 0;
@@ -43,9 +37,9 @@ uint32 FEngine::Shutdown(uint32 exitCode) const
 
 uint32 EngineMain(FApplicationInfo applicationInfo)
 {
-    const FEngine* engine = new FEngine(applicationInfo);
+    const FEngine* engine = FDefaultAllocator::GetInstance()->NewObject<FEngine>(applicationInfo);
     const uint32 exitCode = engine->Run();
-    delete engine;
+    FDefaultAllocator::GetInstance()->DeleteObject(engine);
     delete FDefaultAllocator::GetInstance();
     return exitCode;
 }

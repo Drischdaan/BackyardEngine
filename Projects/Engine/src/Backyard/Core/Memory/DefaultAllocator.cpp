@@ -2,13 +2,15 @@
 
 #include <Backyard/Core/Memory/DefaultAllocator.h>
 
-void* FDefaultAllocator::AllocateMemory(size_t size)
+void* FDefaultAllocator::AllocateMemory(size_t size, EMemoryTag tag)
 {
+    AddToTag(tag, size);
     return malloc(size);
 }
 
-void FDefaultAllocator::FreeMemory(void* memory)
+void FDefaultAllocator::FreeMemory(void* memory, size_t size, EMemoryTag tag)
 {
+    RemoveFromTag(tag, size);
     free(memory);
 }
 
