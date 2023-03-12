@@ -1,19 +1,20 @@
 ﻿#pragma once
 
+#include <type_traits>
 #include <Backyard/Core/EngineDefinitions.h>
 #include <Backyard/Core/Types.h>
 
-#include "Core/Application.h"
+#include "Core/Memory/Allocator.h"
 
 class API FEngine
 {
 public:
-    FEngine(FApplicationInfo applicationInfo);
+    FEngine();
     ~FEngine();
 
     [[nodiscard]] uint32 Run() const;
-    
-    [[nodiscard]] FApplicationInfo GetApplicationInfo() const { return m_ApplicationInfo; }
+
+    [[nodiscard]] IAllocator& GetAllocator() const { return *m_Allocator; }
 
 private:
     [[nodiscard]] uint32 Initialize() const;
@@ -26,8 +27,8 @@ public:
 private:
     inline static FEngine* s_Instance = nullptr;
 
-    FApplicationInfo m_ApplicationInfo;
+    IAllocator* m_Allocator = nullptr;
     
 };
 
-API uint32 EngineMain(FApplicationInfo applicationInfo);
+API uint32 EngineMain();

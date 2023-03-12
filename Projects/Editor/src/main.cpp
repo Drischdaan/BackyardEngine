@@ -2,4 +2,4 @@
 
 #include <Backyard/Platform/EntryPoint.h>
 
-ENGINE_ENTRY_POINT({ "Editor" })
+ENGINE_ENTRY_POINT()

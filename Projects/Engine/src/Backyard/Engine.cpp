@@ -4,13 +4,16 @@
 
 #include "Core/Memory/DefaultAllocator.h"
 
-FEngine::FEngine(FApplicationInfo applicationInfo)
-    : m_ApplicationInfo(applicationInfo)
+FEngine::FEngine()
 {
     s_Instance = this;
+    m_Allocator = new FDefaultAllocator();
 }
 
-FEngine::~FEngine() = default;
+FEngine::~FEngine()
+{
+    delete m_Allocator;
+}
 
 uint32 FEngine::Run() const
 {
@@ -35,11 +38,10 @@ uint32 FEngine::Shutdown(uint32 exitCode) const
     return exitCode;
 }
 
-uint32 EngineMain(FApplicationInfo applicationInfo)
+uint32 EngineMain()
 {
-    const FEngine* engine = FDefaultAllocator::GetInstance()->NewObject<FEngine>(MEMORY_TAG_CORE, applicationInfo);
+    const FEngine* engine = new FEngine();
     const uint32 exitCode = engine->Run();
-    FDefaultAllocator::GetInstance()->DeleteObject(engine, MEMORY_TAG_CORE);
-    delete FDefaultAllocator::GetInstance();
+    delete engine;
     return exitCode;
 }

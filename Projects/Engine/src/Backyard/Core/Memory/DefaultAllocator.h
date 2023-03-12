@@ -2,18 +2,20 @@
 
 #include <Backyard/Core/EngineDefinitions.h>
 
-#include "Memory.h"
+#include <Backyard/Core/Memory/Allocator.h>
 
-class API FDefaultAllocator : public FAllocator
+class API FDefaultAllocator : public IAllocator
 {
 public:
-    void* AllocateMemory(size_t size, EMemoryTag tag = MEMORY_TAG_UNKNOWN) override;
-    void FreeMemory(void* memory, size_t size, EMemoryTag tag = MEMORY_TAG_UNKNOWN) override;
+    virtual void* AllocateMemory(size_t size, EMemoryTag tag) override;
+    virtual void FreeMemory(void* memory, size_t size, EMemoryTag tag) override;
 
-public:
-    static FAllocator* GetInstance();
+    FMemoryStatistics& GetMemoryStatistics() override;
 
-private:
-    inline static FDefaultAllocator* s_Instance = nullptr; 
+protected:
+    void UpdateMemoryStatistics(size_t size, EMemoryTag tag, bool8 bAllocated);
+    
+protected:
+    FMemoryStatistics m_MemoryStatistics;
     
 };
