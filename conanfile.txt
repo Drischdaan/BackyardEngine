@@ -1,9 +1,0 @@
-[requires]
-
-[options]
-
-[imports]
-bin, *.dll -> ./../../../App
-
-[generators]
-premake

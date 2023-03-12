@@ -1,24 +1,9 @@
 work_directory='%{wks.location}/App'
 
-project_location='%{wks.location}/Source/%{prj.name}'
+project_location='%{wks.location}/Projects/%{prj.name}'
 project_output_directory_template='%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}'
 project_binary_directory='%{wks.location}/Build/bin/' .. project_output_directory_template .. '/%{prj.name}'
 project_object_directory='%{wks.location}/Build/bin-int/' .. project_output_directory_template .. '/%{prj.name}'
-
-local function include_conan(filename)
-  include(filename)
-  local buildinfo = { }
-  local prefix = 'conan_'
-  for k, v in pairs(_G) do
-      if k:sub(1, #prefix) == prefix then
-          buildinfo[k:sub(#prefix + 1)] = v
-      end
-  end
-  return buildinfo
-end
-
-conan_debug   = include_conan('Build/conan/Debug/conanbuildinfo.premake.lua')
-conan_release = include_conan('Build/conan/Release/conanbuildinfo.premake.lua')
 
 function resetFilter()
   filter {}
@@ -43,16 +28,14 @@ function project_defaults()
   }
 
   includedirs {
-    '%{prj.location}/',
-    '%{prj.location}/Public',
-    '%{prj.location}/Private',
+    '%{prj.location}/src',
   }
 
   filter 'system:Windows'
     systemversion 'latest'
 
     defines {
-      '_BACKYARD_PLATFORM_WINDOWS',
+      '_ENGINE_PLATFORM_WINDOWS',
       'WIN32_LEAN_AND_MEAN',
     }
 
@@ -60,7 +43,7 @@ function project_defaults()
     systemversion 'latest'
 
     defines {
-      '_BACKYARD_PLATFORM_LINUX',
+      '_ENGINE_PLATFORM_LINUX',
     }
 
   filter 'configurations:Debug'
@@ -68,7 +51,7 @@ function project_defaults()
     symbols 'On'
 
     defines {
-      '_BACKYARD_CONFIGURATION_DEBUG',
+      '_ENGINE_CONFIGURATION_DEBUG',
     }
 
   filter 'configurations:Release'
@@ -76,7 +59,7 @@ function project_defaults()
     optimize 'On'
 
     defines {
-      '_BACKYARD_CONFIGURATION_RELEASE',
+      '_ENGINE_CONFIGURATION_RELEASE',
     }
 
     resetFilter()
@@ -92,8 +75,8 @@ function configure_static_library()
   kind 'StaticLib'
 
   defines {
-    '_BACKYARD_BUILD_LIBRARY',
-    '_BACKYARD_KIND_STATIC_LIBRARY',
+    '_ENGINE_BUILD_LIBRARY',
+    '_ENGINE_KIND_STATIC_LIBRARY',
   }
 end
 
@@ -101,8 +84,8 @@ function configure_dynamic_library()
   kind 'SharedLib'
 
   defines {
-    '_BACKYARD_BUILD_LIBRARY',
-    '_BACKYARD_KIND_SHARED_LIBRARY',
+    '_ENGINE_BUILD_LIBRARY',
+    '_ENGINE_KIND_SHARED_LIBRARY',
   }
 end
 
@@ -110,7 +93,7 @@ function configure_executable_console()
   kind 'ConsoleApp'
 
   defines {
-    '_BACKYARD_KIND_CONSOLE_APP',
+    '_ENGINE_KIND_CONSOLE_APP',
   }
 end
 
@@ -118,6 +101,6 @@ function configure_executable_windowed()
   kind 'WindowedApp'
 
   defines {
-    '_BACKYARD_KIND_WINDOWED_APP',
+    '_ENGINE_KIND_WINDOWED_APP',
   }
 end

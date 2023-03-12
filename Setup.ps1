@@ -1,0 +1,1 @@
+& ./Scripts/Windows/GenerateProjectFiles.ps1
