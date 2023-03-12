@@ -66,8 +66,8 @@ git clone --recursive https://github.com/Drischdaan/BackyardEngine
 After you cloned the repository you have to generate the project files with the correct script for your operating system.
 
 ```shell
-# Windows
-$ ./Setup.bat
+# Windows (Powershell)
+$ ./Setup.ps1
 ```
 
 > **❗Note:** Execute the command in the root of the repository
