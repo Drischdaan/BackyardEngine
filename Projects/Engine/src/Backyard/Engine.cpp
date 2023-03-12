@@ -2,6 +2,8 @@
 
 #include <Backyard/Engine.h>
 
+#include "Core/Memory/DefaultAllocator.h"
+
 FEngine::FEngine(FApplicationInfo applicationInfo)
     : m_ApplicationInfo(applicationInfo)
 {
@@ -18,6 +20,12 @@ uint32 FEngine::Run() const
     Loop();
     return Shutdown();
 }
+
+class FTest
+{
+public:
+    const char* Name;
+};
 
 uint32 FEngine::Initialize() const
 {
@@ -38,5 +46,6 @@ uint32 EngineMain(FApplicationInfo applicationInfo)
     const FEngine* engine = new FEngine(applicationInfo);
     const uint32 exitCode = engine->Run();
     delete engine;
+    delete FDefaultAllocator::GetInstance();
     return exitCode;
 }
