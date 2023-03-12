@@ -1,12 +1,16 @@
 ﻿#pragma once
 
-#include <type_traits>
 #include <Backyard/Core/EngineDefinitions.h>
 #include <Backyard/Core/Types.h>
 
 #include "Core/Memory/Allocator.h"
 
-class API FEngine
+namespace Backyard
+{
+    class FEngine;
+}
+
+class API Backyard::FEngine
 {
 public:
     FEngine();
@@ -14,7 +18,7 @@ public:
 
     [[nodiscard]] uint32 Run() const;
 
-    [[nodiscard]] IAllocator& GetAllocator() const { return *m_Allocator; }
+    [[nodiscard]] Memory::IAllocator& GetAllocator() const { return *m_Allocator; }
 
 private:
     [[nodiscard]] uint32 Initialize() const;
@@ -27,7 +31,7 @@ public:
 private:
     inline static FEngine* s_Instance = nullptr;
 
-    IAllocator* m_Allocator = nullptr;
+    Memory::IAllocator* m_Allocator = nullptr;
     
 };
 

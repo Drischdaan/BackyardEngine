@@ -6,15 +6,18 @@
 #include <type_traits>
 #include <new>
 
-class API IAllocator
+namespace Backyard::Memory
+{
+    class IAllocator;
+}
+
+class API Backyard::Memory::IAllocator
 {
 public:
     virtual ~IAllocator() = default;
 
     virtual void* AllocateMemory(size_t size, EMemoryTag tag = MEMORY_TAG_UNKNOWN) = 0;
     virtual void FreeMemory(void* memory, size_t size, EMemoryTag tag = MEMORY_TAG_UNKNOWN) = 0;
-
-    virtual FMemoryStatistics& GetMemoryStatistics() = 0;
 
 public:
     template<typename T>
