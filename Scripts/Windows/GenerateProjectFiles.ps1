@@ -4,3 +4,4 @@ echo [Info] Generating project files...
 
 # Fix for premake not setting precompiled header to create
 (Get-Content .\Projects\Engine\Engine.vcxproj).replace('<PrecompiledHeader>Use</PrecompiledHeader>', '<PrecompiledHeader>Create</PrecompiledHeader>') | Set-Content .\Projects\Engine\Engine.vcxproj
+(Get-Content .\Projects\Editor\Editor.vcxproj).replace('<PrecompiledHeader>Use</PrecompiledHeader>', '<PrecompiledHeader>Create</PrecompiledHeader>') | Set-Content .\Projects\Editor\Editor.vcxproj
