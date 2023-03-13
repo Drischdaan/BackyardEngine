@@ -2,12 +2,14 @@
 
 #include <Backyard/Engine.h>
 
+#include "Core/Assertion/Assertion.h"
 #include "Core/Memory/DefaultAllocator.h"
 
 Backyard::FEngine::FEngine()
 {
     s_Instance = this;
     m_Allocator = new Memory::FDefaultAllocator();
+    ASSERT(m_Allocator != nullptr, "Allocator is null!");
 }
 
 Backyard::FEngine::~FEngine()

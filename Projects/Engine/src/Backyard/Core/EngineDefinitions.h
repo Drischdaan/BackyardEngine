@@ -1,5 +1,7 @@
 ﻿#pragma once
 
+#include <string>
+
 #if defined(_MSC_VER)
     #undef _COMPILER_MSVC
     #undef _COMPILER_GCC
